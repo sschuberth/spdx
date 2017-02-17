@@ -5,4 +5,4 @@ if [ ! -d "$1" ]; then
     exit 1
 fi
 
-find "$1" -type f -print0 | xargs -0 sha1sum | cut -d' ' -f1 | sort | tr -d '\n' | sha1sum - | cut -d' ' -f1
+find "$1" -type f -print0 | xargs -0 sha1sum | cut -d' ' -f1 | sort | tr -d '\r\n' | sha1sum - | cut -d' ' -f1

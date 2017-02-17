@@ -12,5 +12,5 @@ if ! which jq > /dev/null 2>&1; then
 fi
 
 pushd $(dirname "$1") > /dev/null
-jq -r '.files[] | select(.type != "directory") | .sha1' $(basename "$1") | sort | tr -d '\n' | sha1sum - | cut -d' ' -f1
+jq -r '.files[] | select(.type != "directory") | .sha1' $(basename "$1") | sort | tr -d '\r\n' | sha1sum - | cut -d' ' -f1
 popd > /dev/null
