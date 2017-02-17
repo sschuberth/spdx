@@ -11,4 +11,6 @@ if ! which jq > /dev/null 2>&1; then
     exit 2
 fi
 
-jq -r .files[].sha1 "$1" | sort | tr -d '\n' | sha1sum - | cut -d' ' -f1
+pushd $(dirname "$1") > /dev/null
+jq -r .files[].sha1 $(basename "$1") | sort | tr -d '\n' | sha1sum - | cut -d' ' -f1
+popd > /dev/null
